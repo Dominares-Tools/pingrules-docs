@@ -8,7 +8,7 @@ pingrules sends your app's events to Telegram and email by a rules file you edit
 
 ## Get it
 
-Buy pingrules at https://dominares.org/tools/pingrules: one payment of $99, plus sales tax where it applies, and every future update. After checkout you are invited to a private GitHub repository with the source and every version published to it. The repository includes the Python package and the pingrules command, an example rules file, and the full test suite.
+Buy pingrules at https://dominares.org/tools/pingrules: one payment of $99, plus sales tax where it applies, and every future update. After checkout you are invited to a private GitHub repository with the source and every version published to it. The repository includes the Python package and the pingrules command, an example rules file, and the test suite.
 
 Requirements: Python 3.10 or newer, standard library only. A Telegram bot token and a Resend API key or an SMTP server to send for real; the demo needs none. tzdata is optional, for systems without a time zone database.
 
