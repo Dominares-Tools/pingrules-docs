@@ -12,7 +12,7 @@ Buy pingrules at https://dominares.org/tools/pingrules: one payment of $99, plus
 
 Requirements: Python 3.10 or newer, standard library only. A Telegram bot token and a Resend API key or an SMTP server to send for real; the demo needs none. tzdata is optional, for systems without a time zone database.
 
-This page documents version 1.0.1. Install commands and file paths in the documentation below run inside the private repository you are invited to; the source is not in this repository.
+This page documents version 1.0.2. Install commands and file paths in the documentation below run inside the private repository you are invited to; the source is not in this repository.
 
 ## Documentation
 
@@ -66,7 +66,7 @@ a fallback exists: it uses only the destinations your environment names (`PINGRU
 ```bash
 pingrules init                                   # writes rules.json, a small working example
 pingrules check rules.json                       # validates it, in words
-pingrules fire rules.json payment_failed --set customer=acme --set amount=250 --log delivery.jsonl
+pingrules fire rules.json payment_failed --set customer=acme --set amount=250 --at 2026-01-15T12:00:00Z --log delivery.jsonl
 pingrules fire rules.json payment_failed --set customer=acme --set amount=250 --at 2026-01-15T23:30:00Z --log delivery.jsonl
 pingrules fire rules.json payment_failed --set customer=acme --set amount=20 --log delivery.jsonl
 pingrules test-fire rules.json payment_failed --recipient ops-mail
@@ -76,8 +76,9 @@ pingrules log delivery.jsonl
 ```
 <!-- quickstart:end -->
 
-What you will see: the first fire reaches both recipients. The second is the same payment at 23:30 UTC, inside
-quiet hours, so Telegram is `held` and the email still goes. The third has an amount of 20, below the rule's
+What you will see: the first fire, at noon UTC, reaches both recipients. The second is the same payment at 23:30 UTC,
+inside quiet hours, so Telegram is `held` and the email still goes. (`--at` says what time to act as if it were; leave it
+off and the real clock decides, so the same line run during quiet hours holds Telegram.) The third has an amount of 20, below the rule's
 condition, so nobody is bothered (`skipped: conditions-not-met`). The test fire reaches only `ops-mail`, marked
 `[TEST FIRE]`. The broken file, with a fallback chat named in the environment for that one line, produces `status: fallback`,
 with the reason, and exits 1 so a script notices (leave the variable off and the preview prints `rules-unreadable`

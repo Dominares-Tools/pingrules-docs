@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.2 (2026-11-23)
+
+No change to the tool.
+
+- The README quickstart's first `fire` now says what time it is (`--at`), so it shows both recipients at any hour.
+  Before, the same line run during the sample quiet hours (21:00 to 07:00 UTC) held Telegram, and the README
+  promised otherwise.
+- Five tests that depended on the wall clock now pass at any hour.
+
 ## 1.0.1 (2026-10-05)
 
 Fixes from the review of 1.0.0. Anything marked (breaking) changes a call or a log field that 1.0.0 had.
